@@ -11,7 +11,7 @@ export const Navbar = () => {
             <NavLink to='/dashboard' className="app-logo">
                 <div>Handup - Logo</div>
             </NavLink>
-            <div id="open-sidebar" onClick={actions.open_sidebar}>Menú</div>
+            <div id="toggle-sidebar" onClick={actions.open_sidebar}>Menú</div>
         </div>
     );
 }

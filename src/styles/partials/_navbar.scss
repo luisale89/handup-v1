@@ -1,8 +1,7 @@
 #nav-container {
     width: 100%;
     position: fixed;
-    display: flex;
-    flex-direction: column;
+    @include flex-container($direction:column);
     @media only screen and (min-width: 768px) {
       height: 100%;
       width: 250px;
@@ -13,26 +12,23 @@
 #navbar {
     background-color: $color-primary;
     height: $nav-height;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-around;
+    @include flex-container($justify: space-around, $items: center);
     .app-logo {
         color: white;
-        font-size: 20px;
+        font-size: 1.25em; /* 20px/16px = 1.25em */
         padding: 6px 12px;
         text-decoration: none;
         width: 200px;
         text-align: center;
     }
-    #open-sidebar {
+    #toggle-sidebar {
         background: #fff;
         border: 1px solid $color-primary;
         border-left: 0px;
         border-radius: 0px 10px 10px 0px;
         padding: 10px 5px;
         color: $color-primary;
-        font-size: 12px;
+        font-size: 1em;
         font-weight: bold;
         @media only screen and (min-width: 768px) {
             display: none;
