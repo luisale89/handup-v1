@@ -27,36 +27,34 @@ export const Layout = () => {
     if (store.user_logged) {
         return ( //the whole app is protected.
             <BrowserRouter>
-                <ScrollToTop>
-                    <div id="main-app">
-                        <nav id="nav-container">
-                            <Navbar />
-                            <Sidebar />
-                        </nav>
-                        <section id="app-content">
-                            <Switch>
-                                <Route path="/dashboard" component={Dashboard} />
-                                {/* notFound*/}
-                                <Route render={() => <NotFound />} />
-                                <Route render={() => <Redirect to="/dashboard" />} />
-                            </Switch>
-                        </section>
-                    </div>
-                </ScrollToTop>
+                <div id="main-app">
+                    <Sidebar />
+                    <section id="app-content">
+                        <Switch>
+                            <Route path="/dashboard" component={Dashboard} />
+                            {/* notFound*/}
+                            <Route render={() => <NotFound />} />
+                            <Route render={() => <Redirect to="/dashboard" />} />
+                        </Switch>
+                    </section>
+                </div>
             </BrowserRouter>
         );
     } else {
         return ( //Public Views
             <BrowserRouter>
-                <scrollToTop>
-                    <Switch>
-                        <Route exact path="/" component ={Home} />
-                        {/* <Route path="/conocenos" component={About} />
-                        <Route path="/beneficios" component={Benefits} />
-                        <Route path="/contacto" component={Contact} /> */}
-                        <Route render={() => <NotFound />} />
-                    </Switch>
-                </scrollToTop>
+                <ScrollToTop>
+                    <div id="landing">
+                        <Navbar />
+                        <Switch>
+                            <Route exact path="/" component ={Home} />
+                            {/* <Route path="/conocenos" component={About} />
+                            <Route path="/beneficios" component={Benefits} />
+                            <Route path="/contacto" component={Contact} /> */}
+                            <Route render={() => <NotFound />} />
+                        </Switch>
+                    </div>
+                </ScrollToTop>
             </BrowserRouter>
         )
     }

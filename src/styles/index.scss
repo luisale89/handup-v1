@@ -13,15 +13,17 @@
 
 #main-app {
   height: 100%;
-  display: flex;
-  flex-direction: column;
+  @include flex-container($direction:column);
+  // display: flex;
+  // flex-direction: column;
   #app-content {
     margin-top: $nav-height;
+    @include flex-item($grow:1)
   }
   @media only screen and (min-width: 768px) {
     flex-direction: row;
     #app-content {
-      margin: 10px;
+      margin: 0;
     }
   }
 }

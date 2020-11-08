@@ -15,25 +15,33 @@ export const Sidebar = () => {
     ]
 
     return (
-        <div id="side-navbar" className = {store.side_bar ? "show": "hide"}>
-            <div className="navbar-nav">
-                {app_links.map(item => {
-                    return (
-                        <NavLink 
-                            className="nav-link"
-                            key={item.id}
-                            to={item.to} 
-                            onClick={actions.close_sidebar} 
-                            activeClassName="active" 
-                            exact
-                            >
-                                <i className={item.icon}></i>
-                                <span>{item.name}</span>
-                        </NavLink>
-                    )
-                })}
+        <nav id="sidebar-container">
+            <div className="sidebar-header">
+                <NavLink to='/dashboard' className="app-logo">
+                    <div>Handup - Logo</div>
+                </NavLink>
+                <div id="toggle-sidebar" onClick={actions.open_sidebar}>Menú</div>
             </div>
-            <div className="close-session" onClick={actions.close_sidebar}><p>&times; Cerrar sesión</p></div>
-        </div>
+            <div className={`sidebar-body ${store.side_bar ? "show":"hide"}`}>
+                <div className="sidebar-nav">
+                    {app_links.map(item => {
+                        return (
+                            <NavLink 
+                                className="nav-link"
+                                key={item.id}
+                                to={item.to} 
+                                onClick={actions.close_sidebar} 
+                                activeClassName="active" 
+                                exact
+                                >
+                                    <i className={item.icon}></i>
+                                    <span>{item.name}</span>
+                            </NavLink>
+                        )
+                    })}
+                </div>
+                <div className="close-session" onClick={actions.close_sidebar}><p>&times; Cerrar sesión</p></div>
+            </div>
+        </nav>
     );
 }

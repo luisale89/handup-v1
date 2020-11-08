@@ -1,42 +1,80 @@
-#side-navbar {
-    background-color: lighten($color: $color-bg, $amount: 10%);
-    width: 0;
-    height: 0;
-    overflow-x: hidden;
-    @include flex-item($grow:1);
-    @include flex-container($direction:column, $justify: space-between);
-    transition: width 0.5s, height 0.5s;
-    box-shadow: 5px 10px 8px darken($color: $color-bg, $amount: 10%);
-    &.show {
-        width: 80%;
-        height: 100%;
+#sidebar-container {
+    width: 100%;
+    position: fixed;
+    @include flex-container($direction:column);
+    @media only screen and (min-width: 768px) {
+      height: 100%;
+      width: 250px;
+      position: static;
     }
-    .navbar-nav {
-        .nav-link {
-            display: block;
-            padding: 16px 8px;
+    /*header of the sidebar*/
+    .sidebar-header {
+        background-color: $color-primary;
+        height: $nav-height;
+        @include flex-container($justify: space-around, $items: center);
+        .app-logo {
+            color: white;
+            font-size: 1.25em; /* 20px/16px = 1.25em */
+            padding: 6px 12px;
             text-decoration: none;
+            width: 200px;
+            text-align: center;
+        }
+        #toggle-sidebar {
+            background: #fff;
+            border: 1px solid $color-primary;
+            border-left: 0px;
+            border-radius: 0px 10px 10px 0px;
+            padding: 10px 5px;
+            color: $color-primary;
             font-size: 1em;
-            color: darken($color: $color-bg, $amount: 60%);
-            &.active {
-                color: $color-primary;
-                font-weight: bold;
-                background-color: $color-bg;
+            font-weight: bold;
+            @media only screen and (min-width: 768px) {
+                display: none;
             }
         }
     }
-    .close-session {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        font-size: 1em;
-        padding: 16px 8px;
-        cursor: pointer;
-        color: darken($color: $color-bg, $amount: 60%);
-        font-weight: bold;
-    }
-    @media only screen and (min-width: 768px) {
-        width: 100%;
-        background: #fff;
+    /*body of the sidebar*/
+    .sidebar-body {
+        background-color: lighten($color: $color-bg, $amount: 10%);
+        width: 0;
+        height: 0;
+        overflow-x: hidden;
+        @include flex-item($grow:1);
+        @include flex-container($direction:column, $justify: space-between);
+        transition: width 0.5s, height 0.5s;
+        box-shadow: 5px 10px 8px darken($color: $color-bg, $amount: 10%);
+        &.show {
+            width: 80%;
+            height: 100%;
+        }
+        .sidebar-nav {
+            .nav-link {
+                display: block;
+                padding: 16px 8px;
+                text-decoration: none;
+                font-size: 1em;
+                color: darken($color: $color-bg, $amount: 60%);
+                &.active {
+                    color: $color-primary;
+                    font-weight: bold;
+                    background-color: $color-bg;
+                }
+            }
+        }
+        .close-session {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 1em;
+            padding: 16px 8px;
+            cursor: pointer;
+            color: darken($color: $color-bg, $amount: 60%);
+            font-weight: bold;
+        }
+        @media only screen and (min-width: 768px) {
+            width: 100%;
+            background: #fff;
+        }
     }
 }
