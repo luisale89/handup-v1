@@ -33,12 +33,14 @@ export const Layout = () => {
                             <Navbar />
                             <Sidebar />
                         </nav>
-                        <Switch>
-                            <Route path="/dashboard" component={Dashboard} />
-                            {/* notFound*/}
-                            <Route render={() => <NotFound />} />
-                            <Route render={() => <Redirect to="/dashboard" />} />
-                        </Switch>
+                        <section id="app-content">
+                            <Switch>
+                                <Route path="/dashboard" component={Dashboard} />
+                                {/* notFound*/}
+                                <Route render={() => <NotFound />} />
+                                <Route render={() => <Redirect to="/dashboard" />} />
+                            </Switch>
+                        </section>
                     </div>
                 </ScrollToTop>
             </BrowserRouter>

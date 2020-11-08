@@ -3,8 +3,8 @@ import React from 'react';
 export const Dashboard = () => {
 
     return (
-        <div>
+        <div id="dashboard">
             <h1>Dashboard Page</h1>
         </div>
-    );
+    ); 
 }

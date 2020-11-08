@@ -12,7 +12,7 @@
 
 #navbar {
     background-color: $color-primary;
-    height: 80px;
+    height: $nav-height;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
