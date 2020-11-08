@@ -1,70 +1,45 @@
-#sideNav {
-    height: 100%;
-    position: fixed;
-    width: 0%;
-    z-index: 1;
-    top: 0;
-    left: 0;
+#side-navbar {
     background-color: lighten($color: $color-bg, $amount: 10%);
+    width: 0;
+    height: 0;
     overflow-x: hidden;
-    transition: width 0.4s;
-    &.active {
-        width: 60%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    transition: width 0.5s, height 0.5s;
+    box-shadow: 5px 10px 8px darken($color: $color-bg, $amount: 10%);
+    &.show {
+        width: 80%;
+        height: 100%;
     }
-    .nav-zone {
-        a {
+    .navbar-nav {
+        .nav-link {
+            display: block;
             padding: 16px 8px;
             text-decoration: none;
             font-size: 16px;
             color: darken($color: $color-bg, $amount: 60%);
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            &.active-nav {
+            &.active {
                 color: $color-primary;
                 font-weight: bold;
                 background-color: $color-bg;
             }
-            i {
-                flex: 0 0 50px;
-                text-align: center;
-            }
         }
     }
-    .closebtn {
-        display: inline-block;
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-        margin-left: 50px;
+    .close-session {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 16px;
+        padding: 16px 8px;
         cursor: pointer;
-    }
-    #role-select {
-        padding: 20px 10px;
-        margin-top: 60px;
+        color: darken($color: $color-bg, $amount: 60%);
+        font-weight: bold;
     }
     @media only screen and (min-width: 768px) {
-        flex: 0 0 250px;
-        z-index: 0;
-        position: static;
-        overflow-x: visible;
+        width: 100%;
         background: #fff;
-        margin-top: 0px;
-        a {
-            font-size: 14px;
-            &:hover {
-                background-color: darken($color: $color-bg, $amount: 15%);
-            }
-            &:focus{
-                outline: none;
-            }
-        }
-        .closebtn {
-            display: none;
-        }
-        #role-select {
-            margin-top: 10px;
-        }
     }
 }

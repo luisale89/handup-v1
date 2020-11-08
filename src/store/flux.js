@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 fname:"Luis",
                 lname:"Lucena"
             },
-            side_bar: true // tag para mostrar/ocultar sidebar desde el navbar.
+            side_bar: false // tag para mostrar/ocultar sidebar desde el navbar.
 		},
 		actions: {
 			loadSomeData: () => {

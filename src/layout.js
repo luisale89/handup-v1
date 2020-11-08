@@ -10,6 +10,7 @@ import { NotFound } from './views/notFound';
 
 // ? components
 import { Sidebar } from "./component/sidebar";
+import { Navbar } from "./component/navbar";
 
 import injectContext from "../src/store/appContext";
 
@@ -27,25 +28,33 @@ export const Layout = () => {
         return ( //the whole app is protected.
             <BrowserRouter>
                 <ScrollToTop>
-                    <Sidebar />
-                    <Switch>
-                        <Route path="/dashboard" component={Dashboard} />
-                        {/* notFound*/}
-                        <Route render={() => <Redirect to="/dashboard" />} />
-                    </Switch>
+                    <div id="main-app">
+                        <nav id="nav-container">
+                            <Navbar />
+                            <Sidebar />
+                        </nav>
+                        <Switch>
+                            <Route path="/dashboard" component={Dashboard} />
+                            {/* notFound*/}
+                            <Route render={() => <NotFound />} />
+                            <Route render={() => <Redirect to="/dashboard" />} />
+                        </Switch>
+                    </div>
                 </ScrollToTop>
             </BrowserRouter>
         );
     } else {
         return ( //Public Views
             <BrowserRouter>
-                <Switch>
-                    <Route exact path="/" component ={Home} />
-                    {/* <Route path="/conocenos" component={About} />
-                    <Route path="/beneficios" component={Benefits} />
-                    <Route path="/contacto" component={Contact} /> */}
-                    <Route render={() => <NotFound />} />
-                </Switch>
+                <scrollToTop>
+                    <Switch>
+                        <Route exact path="/" component ={Home} />
+                        {/* <Route path="/conocenos" component={About} />
+                        <Route path="/beneficios" component={Benefits} />
+                        <Route path="/contacto" component={Contact} /> */}
+                        <Route render={() => <NotFound />} />
+                    </Switch>
+                </scrollToTop>
             </BrowserRouter>
         )
     }

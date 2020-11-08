@@ -8,23 +8,23 @@ export const Sidebar = () => {
 
     const app_links = [ //en esta variable se definen todas las rutas de la app. role va a mostrar las correspondientes.
         //app links
-        {id:"1", name: "Información", to: `/dashboard`, icon: 'icon'},
+        {id:"1", name: "Información", to: '/dashboard', icon: 'icon'},
         {id:"2", name: "Mesas", to: '/mesas', icon: 'icon'},
         {id:"3", name: "Menú", to: '/menu', icon: 'icon'},
         {id:"4", name: "Garzones", to: '/garzones', icon: 'icon'},
     ]
 
     return (
-        <div id="sideNav" className="active">
-            <span className="closebtn" onClick={actions.close_sidebar}>&times;</span>
-            <div className="nav-zone">
+        <div id="side-navbar" className = {store.side_bar ? "show": "hide"}>
+            <div className="navbar-nav">
                 {app_links.map(item => {
                     return (
                         <NavLink 
-                            key={item.id} 
+                            className="nav-link"
+                            key={item.id}
                             to={item.to} 
                             onClick={actions.close_sidebar} 
-                            activeClassName="active-nav" 
+                            activeClassName="active" 
                             exact
                             >
                                 <i className={item.icon}></i>
@@ -33,6 +33,7 @@ export const Sidebar = () => {
                     )
                 })}
             </div>
+            <div className="close-session" onClick={actions.close_sidebar}><p>&times; Cerrar sesión</p></div>
         </div>
     );
 }

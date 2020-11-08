@@ -1,0 +1,41 @@
+#nav-container {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    @media only screen and (min-width: 768px) {
+      height: 100%;
+      width: 250px;
+      position: static;
+    }
+}
+
+#navbar {
+    background-color: $color-primary;
+    height: 80px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+    .app-logo {
+        color: white;
+        font-size: 20px;
+        padding: 6px 12px;
+        text-decoration: none;
+        width: 200px;
+        text-align: center;
+    }
+    #open-sidebar {
+        background: #fff;
+        border: 1px solid $color-primary;
+        border-left: 0px;
+        border-radius: 0px 10px 10px 0px;
+        padding: 10px 5px;
+        color: $color-primary;
+        font-size: 12px;
+        font-weight: bold;
+        @media only screen and (min-width: 768px) {
+            display: none;
+        }
+    }
+}
