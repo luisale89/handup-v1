@@ -16,6 +16,25 @@
     align-self: $align;
 }
 
+@mixin btn($main-color) {
+    background-color: $main-color;
+    color: #fff;
+    border: none;
+    &:hover {
+        background-color: darken($color: $main-color, $amount: 15%);
+        color: #fff;
+    };
+    &:focus {
+        outline: none;
+        background-color: darken($color: $main-color, $amount: 10%);
+        box-shadow: 0px 0px 6px $main-color;
+    };
+    &:disabled {
+        background-color: darken($color: $main-color, $amount: 25%);
+        cursor: default;
+    }
+}
+
 @mixin form-input ($bg-color, $shadow-color, $text-color) {
     padding: 10px 12px;
     margin-bottom: 20px;

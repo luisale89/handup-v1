@@ -2,6 +2,7 @@
 
 @import 'vars';
 @import 'mixins';
+@import 'buttons';
 
 * {
     box-sizing: border-box;
@@ -14,8 +15,6 @@
 #main-app {
   height: 100%;
   @include flex-container($direction:column);
-  // display: flex;
-  // flex-direction: column;
   #app-content {
     margin-top: $nav-height;
     @include flex-item($grow:1)
