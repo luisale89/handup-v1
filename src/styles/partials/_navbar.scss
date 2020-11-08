@@ -7,7 +7,7 @@
     }
     @include flex-container($justify: space-between);
     .navbar-header {
-        margin-right: auto;
+        @include flex-item($grow: 1);
         .app-logo {
             display: inline-block;
             color: white;
@@ -18,13 +18,16 @@
         }
     }
     .navbar-nav {
-        @include flex-container($direction: row, $justify:center, $content:center);
+        @include flex-item($grow: 2);
+        @include flex-container($direction: row, $justify:flex-end);
+        margin-right: 20px;
         a.nav-link {
+            @include flex-item($align:center);
             text-decoration: none;
-            align-self: center;
+            height: 42px;
             color: $color-text;
-            padding: 12px;
-            margin: 0 12px;
+            padding: 10px 0px;
+            margin: 0 20px;
             &.active {
                 border-bottom: 1px solid $color-text;
                 color: $color-text;
@@ -32,7 +35,7 @@
                 text-shadow: 0px 3px 2px darken($color: $color-primary, $amount: 10%);
             }
             &:hover {
-                outline: 1px solid white;
+                border-bottom: 1px solid $color-text;
             }
         }
         #toggle-menu {
