@@ -2,11 +2,6 @@
     width: 100%;
     position: fixed;
     @include flex-container($direction:column);
-    @media only screen and (min-width: 768px) {
-      height: 100%;
-      width: 250px;
-      position: static;
-    }
     /*header of the sidebar*/
     .sidebar-header {
         background-color: $color-primary;
@@ -29,9 +24,6 @@
             color: $color-primary;
             font-size: 1em;
             font-weight: bold;
-            @media only screen and (min-width: 768px) {
-                display: none;
-            }
         }
     }
     /*body of the sidebar*/
@@ -72,9 +64,25 @@
             color: darken($color: $color-bg, $amount: 60%);
             font-weight: bold;
         }
-        @media only screen and (min-width: 768px) {
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #sidebar-container {
+        height: 100%;
+        width: 250px;
+        position: static;
+        .sidebar-header {
+            #toggle-sidebar {
+                display: none;
+            }
+        }
+        .sidebar-body {
             width: 100%;
             background: #fff;
+            &.show {
+                width: 100%;
+            }
         }
     }
 }

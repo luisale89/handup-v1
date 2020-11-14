@@ -2,7 +2,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-            user_logged: false,
+            user_logged: true,
             loading_API: false,
             user: {
                 id: 0,

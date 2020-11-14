@@ -16,7 +16,7 @@
     align-self: $align;
 }
 
-@mixin btn($main-color) {
+@mixin btn-primary($main-color) {
     background-color: $main-color;
     color: #fff;
     border: none;

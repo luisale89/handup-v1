@@ -20,25 +20,30 @@ export const Navbar = () => {
                     <span>Handup - Logo</span>
                 </NavLink>
             </div>
-            <div className="navbar-nav">
+            <div className="navbar-control">
+                <div id="toggle-menu" onClick={actions.open_sidebar}>
+                    Menú
+                </div>
+                <div className="login">
+                    <button className="btn">Iniciar Sesión</button>
+                </div>
+            </div>
+            <ul className="navbar-nav show">
                 {landing_links.map(item => {
                     return (
-                        <NavLink 
+                        <li key={item.id}>
+                            <NavLink 
                             className="nav-link"
-                            key={item.id}
                             to={item.to} 
                             activeClassName="active" 
                             exact
                             >
                                 {item.name}
-                        </NavLink>
+                            </NavLink>
+                        </li>
                     )
                 })}
-                <div id="toggle-menu" onClick={actions.open_sidebar}>
-                    Menú
-                </div>
-            </div>
-            <button className="btn btn-primary login">Iniciar Sesión</button>
+            </ul>
         </nav>
     );
 }

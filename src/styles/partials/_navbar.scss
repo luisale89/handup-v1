@@ -1,13 +1,9 @@
 #navbar {
-    background-color: $color-primary;
-    height: $nav-height;
-    padding: 10px;
-    @media only screen and (min-width: 992px) {
-        padding: 0 100px;
-    }
-    @include flex-container($justify: space-between);
+    @include flex-container($direction:column);
     .navbar-header {
-        @include flex-item($grow: 1);
+        background-color: $color-primary;
+        height: $nav-height;
+        padding: 10px;
         .app-logo {
             display: inline-block;
             color: white;
@@ -17,27 +13,10 @@
             height: 100%;
         }
     }
-    .navbar-nav {
-        @include flex-item($grow: 2);
-        @include flex-container($direction: row, $justify:flex-end);
-        margin-right: 20px;
-        a.nav-link {
-            @include flex-item($align:center);
-            text-decoration: none;
-            height: 42px;
-            color: $color-text;
-            padding: 10px 0px;
-            margin: 0 20px;
-            &.active {
-                border-bottom: 1px solid $color-text;
-                color: $color-text;
-                font-weight: bold;
-                text-shadow: 0px 3px 2px darken($color: $color-primary, $amount: 10%);
-            }
-            &:hover {
-                border-bottom: 1px solid $color-text;
-            }
-        }
+    .navbar-control {
+        background-color: $color-primary;
+        padding: 5px;
+        @include flex-container($direction: row, $justify:space-around);
         #toggle-menu {
             background: #fff;
             border: 1px solid $color-primary;
@@ -47,13 +26,39 @@
             color: $color-primary;
             font-size: 1em;
             font-weight: bold;
-            @media only screen and (min-width: 768px) {
-                display: none;
+        }
+        .login {
+            align-self: center;
+            button {
+                @include btn-primary($color-secondary)
             }
         }
     }
-    .login {
-        align-self: center;
-        @include btn($color-secondary)
+    .navbar-nav {
+        display: none;
+        padding: 0;
+        &.show {
+            display: block;
+            li {
+                list-style: none;
+                a.nav-link {
+                    display: block;
+                    text-decoration: none;
+                    height: 42px;
+                    color: $color-text;
+                    padding: 10px 0px;
+                    margin: 0 20px;
+                    &.active {
+                        border-bottom: 1px solid $color-text;
+                        color: $color-text;
+                        font-weight: bold;
+                        text-shadow: 0px 3px 2px darken($color: $color-primary, $amount: 10%);
+                    }
+                    &:hover {
+                        border-bottom: 1px solid $color-text;
+                    }
+                }
+            }
+        }
     }
 }
