@@ -15,6 +15,25 @@
     align-self: $align;
 }
 
+@mixin burger-menu($main-color: $color-primary) {
+    border: 1px solid $main-color;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+        outline: none;
+        background-color: darken($color: $main-color, $amount: 5%);
+        box-shadow: 0px 0px 6px $main-color;
+    }
+    div {
+        width: 35px;
+        height: 5px;
+        background-color: $main-color;
+        margin: 6px 0;
+        border-radius: 20px;
+      }
+}
+
 @mixin btn-primary($main-color) {
     background-color: $main-color;
     color: #fff;

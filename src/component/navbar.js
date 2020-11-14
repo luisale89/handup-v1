@@ -1,49 +1,61 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Context } from '../store/appContext';
 import {NavLink} from 'react-router-dom';
+import logo from "../img/app-logo.png";
 
 export const Navbar = () => {
     // eslint-disable-next-line
     const {store, actions} = useContext(Context);
 
+    const [state, setState] = useState({ //local Store
+        menu: false
+    });
+
+    const toggle_menu = () => {
+        state.menu ? setState({menu:false}) : setState({menu:true})
+    }
+
     const landing_links = [ //en esta variable se definen todas las rutas de la app. role va a mostrar las correspondientes.
         //app links
-        {id:"1", name: "Conóncenos", to: '/nosotros'},
-        {id:"2", name: "Beneficios", to: '/beneficios'},
-        {id:"3", name: "Contacto", to: '/contacto'},
+        {id:"1", name: "Inicio", to:'/'},
+        {id:"2", name: "Conóncenos", to: '/nosotros'},
+        {id:"3", name: "Beneficios", to: '/beneficios'},
+        {id:"4", name: "Contacto", to: '/contacto'},
     ]
 
     return (
         <nav id="navbar">
             <div className="navbar-header">
                 <NavLink to='/' className="app-logo">
-                    <span>Handup - Logo</span>
+                    <img src={logo} alt="app-logo" style={{width:"200px", height:"auto"}}/>
                 </NavLink>
             </div>
             <div className="navbar-control">
-                <div id="toggle-menu" onClick={actions.open_sidebar}>
-                    Menú
+                <div id="toggle-menu" onClick={() => toggle_menu()}>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
                 <div className="login">
-                    <button className="btn">Iniciar Sesión</button>
+                    <button className="btn">Iniciar sesión</button>
                 </div>
             </div>
-            <ul className="navbar-nav show">
+            <div className={`navbar-nav ${state.menu ? "show": "hide"}`}>
                 {landing_links.map(item => {
                     return (
-                        <li key={item.id}>
-                            <NavLink 
-                            className="nav-link"
-                            to={item.to} 
-                            activeClassName="active" 
-                            exact
-                            >
-                                {item.name}
-                            </NavLink>
-                        </li>
+                        <NavLink 
+                        key={item.id}
+                        className="nav-link"
+                        to={item.to} 
+                        activeClassName="active" 
+                        onClick={() => toggle_menu()}
+                        exact
+                        >
+                            {item.name}
+                        </NavLink>
                     )
                 })}
-            </ul>
+            </div>
         </nav>
     );
 }

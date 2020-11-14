@@ -2,14 +2,13 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-            user_logged: true,
+            user_logged: false,
             loading_API: false,
             user: {
                 id: 0,
                 fname:"Luis",
                 lname:"Lucena"
             },
-            side_bar: false // tag para mostrar/ocultar sidebar desde el navbar.
 		},
 		actions: {
 			loadSomeData: () => {
@@ -19,13 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 setStore({loading_API: true});
                 console.log("data-loaded");
                 return "luis";
-            },
-            close_sidebar: () => {
-                setStore({side_bar: false})
-            },
-            open_sidebar: () => {
-                setStore({side_bar: true});
-            },
+            }
             // set_role: (role) => { // establece el rol global de la app para las configuraciones.
             //     const store = getStore();
             //     role = typeof(role) !== 'undefined' ? role : store.user.roles[0].role;

@@ -17,14 +17,7 @@
             text-decoration: none;
         }
         #toggle-sidebar {
-            background: #fff;
-            border: 1px solid $color-primary;
-            border-left: 0px;
-            border-radius: 0px 10px 10px 0px;
-            padding: 10px 5px;
-            color: $color-primary;
-            font-size: 1em;
-            font-weight: bold;
+            @include burger-menu($color-text-primary)
         }
     }
     /*body of the sidebar*/
