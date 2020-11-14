@@ -1,6 +1,10 @@
 #sidebar-container {
     width: 100%;
     position: fixed;
+    height: auto;
+    &.full {
+        height: 100%;
+    }
     @include flex-container($direction:column);
     /*header of the sidebar*/
     .sidebar-header {
@@ -28,41 +32,49 @@
     }
     /*body of the sidebar*/
     .sidebar-body {
-        background-color: lighten($color: $color-bg, $amount: 10%);
+        background-color: $color-secondary;
         width: 0;
         height: 0;
         overflow-x: hidden;
         @include flex-item($grow:1);
         @include flex-container($direction:column, $justify: space-between);
-        transition: width 0.5s, height 0.5s;
+        transition: width 0.5s;
         box-shadow: 5px 10px 8px darken($color: $color-bg, $amount: 10%);
         &.show {
             width: 80%;
-            height: 100%;
+            height: calc(100% - $nav-height);
         }
         .sidebar-nav {
             .nav-link {
                 display: block;
                 padding: 16px 8px;
                 text-decoration: none;
-                font-size: 1em;
-                color: darken($color: $color-bg, $amount: 60%);
+                font-size: 1.25em;
+                font-weight: 500;
+                color: $color-text-secondary;
                 &.active {
-                    color: $color-primary;
-                    font-weight: bold;
-                    background-color: $color-bg;
+                    color: $color-text-primary;
+                }
+                &:hover {
+                    color: $color-text-primary;
                 }
             }
         }
         .close-session {
+            margin: 0 10px;
+            text-align: center;
+            border-top: 1px solid #F8F8F8;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-            font-size: 1em;
-            padding: 16px 8px;
+            font-size: 1.25em;
+            font-weight: 500;
             cursor: pointer;
-            color: darken($color: $color-bg, $amount: 60%);
-            font-weight: bold;
+            color: $color-text-secondary;
+            &:hover {
+                border-top: 1px solid $color-text-primary;
+                color: $color-text-primary;
+            }
         }
     }
 }
@@ -78,11 +90,8 @@
             }
         }
         .sidebar-body {
-            width: 100%;
-            background: #fff;
-            &.show {
-                width: 100%;
-            }
+            background-color: $color-secondary;
+            width: 100% !important;
         }
     }
 }

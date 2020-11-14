@@ -1,17 +1,21 @@
 $color-primary: #6979F8;
-$color-secondary: #FF8541;
+$color-secondary: #A5AFFB;
+$color-bg: #f1f5f7;
+$color-contrast: #FF8541;
 $color-success: #67b930;
 $color-danger: #e25041;
 $color-warning: #fac51c;
-$color-bg: #f1f5f7;
 $color-info: #17a2b8;
-$color-text: #f1f5f7;
+$color-text: #939393;
+$color-text-primary: #5750CD;
+$color-text-secondary: #FFF;
 
-$main-font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-sans-serif;
+// $main-font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+// 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+// sans-serif;
+$main-font-stack: 'Roboto', sans-serif;
 
 $code-font-stack: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 monospace;
 
-$nav-height: 80px;
+$nav-height: 87px;

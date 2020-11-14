@@ -15,7 +15,7 @@ export const Sidebar = () => {
     ]
 
     return (
-        <nav id="sidebar-container">
+        <nav id="sidebar-container" className={store.side_bar ? "full":"small"}>
             <div className="sidebar-header">
                 <NavLink to='/dashboard' className="app-logo">
                     <div>Handup - Logo</div>
@@ -26,21 +26,20 @@ export const Sidebar = () => {
                 <div className="sidebar-nav">
                     {app_links.map(item => {
                         return (
-                            <NavLink 
+                            <NavLink
+                                key={item.id} 
                                 className="nav-link"
-                                key={item.id}
                                 to={item.to} 
                                 onClick={actions.close_sidebar} 
                                 activeClassName="active" 
                                 exact
                                 >
-                                    <i className={item.icon}></i>
                                     <span>{item.name}</span>
                             </NavLink>
                         )
                     })}
                 </div>
-                <div className="close-session" onClick={actions.close_sidebar}><p>&times; Cerrar sesión</p></div>
+                <div className="close-session" onClick={actions.close_sidebar}><p>Cerrar sesión</p></div>
             </div>
         </nav>
     );
