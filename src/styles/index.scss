@@ -18,7 +18,7 @@
   @include flex-container($direction:column);
   #app-content {
     margin-top: $nav-height;
-    @include flex-item($grow:1)
+    @include flex-item($grow:1) //validar
   }
   @media only screen and (min-width: $mobile-bp) {
     flex-direction: row;

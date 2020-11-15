@@ -34,7 +34,7 @@
       }
 }
 
-@mixin form-input ($bg-color, $shadow-color, $text-color, $invalid-color:$color-danger) {
+@mixin form-input ($bg-color, $shadow-color, $text-color) {
     padding: 12px 12px;
     margin-bottom: 10px;
     font-size: 1em;
@@ -52,11 +52,11 @@
         color: lighten($color: $color-text, $amount: 10%);
     }
     &.invalid {
-        border: 1px solid $invalid-color;
-        box-shadow: 0px 5px 10px -2px lighten($color: $invalid-color, $amount: 10%);
-        color: $invalid-color;
+        border: 1px solid $color-danger;
+        box-shadow: 0px 5px 10px -2px lighten($color: $color-danger, $amount: 10%);
+        color: $color-danger;
         &::placeholder {
-            color: lighten($color: $invalid-color, $amount: 10%);
+            color: lighten($color: $color-danger, $amount: 10%);
         }
     }
     &.valid {
@@ -66,24 +66,24 @@
     }
 }
 
-@mixin tooltip($bg-color) {
-    display: none;
-    font-size: 0.875em; // 14/16 = 
-    font-weight: 600;
-    border: 1px solid $bg-color;
-    position: absolute;
-    color: $bg-color;
-    padding: 6px 12px;
-    border-radius: 5px;
-    &.invalid {
-        display: inline-block;
-    }
-}
-
 @mixin form-label($text-color) {
     color: $text-color;
     font-size: 0.875em; /* 14/16 = 0.875*/
     margin: 20px 0px;
     display: inline-block;
     cursor: default;
+}
+
+@mixin tooltip($context-color) {
+    display: none;
+    font-size: 0.875em; /* 14/16 = 0.875*/
+    font-weight: 600;
+    border: 1px solid $context-color;
+    position: absolute;
+    color: $context-color;
+    padding: 6px 12px;
+    border-radius: 5px;
+    &.invalid {
+        display: inline-block;
+    }
 }
