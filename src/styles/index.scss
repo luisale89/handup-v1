@@ -3,7 +3,7 @@
 @import 'vars';
 @import 'mixins';
 @import 'buttons';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
 
 * {
     box-sizing: border-box;
@@ -20,7 +20,7 @@
     margin-top: $nav-height;
     @include flex-item($grow:1)
   }
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $mobile-bp) {
     flex-direction: row;
     #app-content {
       margin: 0;
@@ -43,4 +43,5 @@ code {
 
   @import "/partials/sidebar";
   @import "/partials/navbar";
-  @import "/partials/dashboard"
+  @import "/partials/dashboard";
+  @import "/partials/loginModal";

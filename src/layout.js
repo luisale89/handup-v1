@@ -11,6 +11,7 @@ import { NotFound } from './views/notFound';
 // ? components
 import { Sidebar } from "./component/sidebar";
 import { Navbar } from "./component/navbar";
+import { Login_modal } from "./component/login_modal";
 
 import injectContext from "../src/store/appContext";
 

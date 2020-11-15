@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Context } from '../store/appContext';
 import {NavLink} from 'react-router-dom';
 import logo from "../img/app-logo.png";
+import { Login_modal } from "../component/login_modal";
 
 export const Navbar = () => {
     // eslint-disable-next-line
@@ -37,7 +38,12 @@ export const Navbar = () => {
                     <div></div>
                 </div>
                 <div className="login">
-                    <button className="btn">Iniciar sesión</button>
+                    <button 
+                        className="btn"
+                        onClick={actions.showLogin}
+                        >
+                            Iniciar sesión
+                    </button>
                 </div>
             </div>
             <div className={`navbar-nav ${state.menu ? "show": "hide"}`}>
@@ -56,6 +62,7 @@ export const Navbar = () => {
                     )
                 })}
             </div>
+            <Login_modal />
         </nav>
     );
 }

@@ -1,6 +1,6 @@
 $color-primary: #6979F8;
 $color-secondary: #A5AFFB;
-$color-bg: #f1f5f7;
+$color-bg: #ADADAF;
 $color-contrast: #FF8541;
 $color-success: #67b930;
 $color-danger: #e25041;
@@ -13,9 +13,11 @@ $color-text-secondary: #FFF;
 // $main-font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
 // 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 // sans-serif;
-$main-font-stack: 'Roboto', sans-serif;
+$main-font-stack: 'Nunito', sans-serif;
 
 $code-font-stack: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 monospace;
 
 $nav-height: 87px;
+$desktop-bp: 991px;
+$mobile-bp: 768px;
