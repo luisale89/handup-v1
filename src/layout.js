@@ -11,7 +11,6 @@ import { NotFound } from './views/notFound';
 // ? components
 import { Sidebar } from "./component/sidebar";
 import { Navbar } from "./component/navbar";
-import { Login_modal } from "./component/login_modal";
 
 import injectContext from "../src/store/appContext";
 
@@ -33,8 +32,7 @@ export const Layout = () => {
                     <section id="app-content">
                         <Switch>
                             <Route path="/dashboard" component={Dashboard} />
-                            {/* notFound*/}
-                            <Route render={() => <NotFound />} />
+                            {/* redirect when not found*/}
                             <Route render={() => <Redirect to="/dashboard" />} />
                         </Switch>
                     </section>

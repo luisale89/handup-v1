@@ -16,9 +16,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
                 */
-                setStore({loading_API: true});
-                console.log("data-loaded");
-                return "luis";
+                setStore({user_logged: true});
+                return "user logged-in";
             },
             showLogin: () => {
                 setStore({display_login: true});

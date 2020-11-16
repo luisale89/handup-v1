@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Context } from '../store/appContext';
 import {NavLink} from 'react-router-dom';
 import logo from "../img/app-logo.png";
-import { Login_modal } from "../component/login_modal";
+import { LoginModal } from "./loginModal";
 
 export const Navbar = () => {
     // eslint-disable-next-line
@@ -14,7 +14,11 @@ export const Navbar = () => {
 
     const toggle_menu = () => {
         state.menu ? setState({menu:false}) : setState({menu:true})
-    }
+    };
+
+    const close_menu = () => {
+        setState({menu:false});
+    };
 
     const landing_links = [ //en esta variable se definen todas las rutas de la app. role va a mostrar las correspondientes.
         //app links
@@ -41,6 +45,7 @@ export const Navbar = () => {
                     <button 
                         className="btn"
                         onClick={actions.showLogin}
+                        disabled={store.loading_API}
                         >
                             Iniciar sesión
                     </button>
@@ -54,7 +59,7 @@ export const Navbar = () => {
                         className="nav-link"
                         to={item.to} 
                         activeClassName="active" 
-                        onClick={() => toggle_menu()}
+                        onClick={() => close_menu()}
                         exact
                         >
                             {item.name}
@@ -62,7 +67,7 @@ export const Navbar = () => {
                     )
                 })}
             </div>
-            <Login_modal />
+            <LoginModal />
         </nav>
     );
 }

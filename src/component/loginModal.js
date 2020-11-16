@@ -3,7 +3,7 @@ import { Context } from '../store/appContext';
 import { validate_all, validate_field, noSpace } from '../helpers/validations';
 import { handleChange } from '../helpers/handlers';
 
-export const Login_modal = () => {
+export const LoginModal = () => {
 
     const {store, actions} = useContext(Context);
 
@@ -43,8 +43,12 @@ export const Login_modal = () => {
     };
 
     const handleInputChange = (event) => { 
-        setState({fields: handleChange(event, state.fields), ...state})
-        check_field(event);
+        setState({
+            fields: handleChange(event, state.fields), 
+            rq_feedback: Object.assign(state.rq_feedback, {[event.target.name]:{class:"", msg:""}}),
+            ...state
+        })
+        // check_field(event);
     };
 
     const check_field = (event) => {
@@ -61,7 +65,7 @@ export const Login_modal = () => {
 
     const handleClick = (event) => {
         const node = document.getElementById("login-form");
-        if (node.contains(event.target)) {
+        if (node.contains(event.target) || store.loading_API) {
             return;
         };
         actions.hideLogin();
