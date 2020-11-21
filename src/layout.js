@@ -4,8 +4,8 @@ import ScrollToTop from "./component/scrollToTop";
 import { Context } from './store/appContext';
 
 //! Views
-import { Dashboard } from './views/dashboard';
-import { Home } from './views/home';
+import { Dashboard } from './views/app-views/dashboard';
+import { Home } from './views/landing-views/home';
 
 // ? components
 import { Sidebar } from "./component/sidebar";

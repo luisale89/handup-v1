@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Context } from '../store/appContext';
 import { validate_all, validate_field, noSpace } from '../helpers/validations';
 import { handleChange } from '../helpers/handlers';
+import { ReactComponent as ShowPW } from "../img/show_pw.svg";
 
 export const LoginModal = () => {
 
@@ -13,7 +14,9 @@ export const LoginModal = () => {
     }
 
     const [state, setState] = useState({ //local Store
-        pw_field_type: "password", //para mostrar/ocultar la contraseña.
+        controls: {
+            passwordShown: false //para mostrar/ocultar la contraseña.
+        },
         fields: {
             [rq_names.email]: "",
             [rq_names.password]: ""
@@ -27,6 +30,9 @@ export const LoginModal = () => {
     const handleSubmit = (event) => { //event is the form that submit
         // se realiza validación de todos los requeridos y si todos son validos, se procede con el submit
         event.preventDefault();
+        if (state.controls.passwordShown) { //evita hacer las validaciones cuando el type del campo "password" es un texto.
+            return;
+        }
         const {valid, feedback} = validate_all(event.target.id, state.rq_feedback) // valida todos los campos requeridos del formulario con id
 
         setState({
@@ -44,7 +50,7 @@ export const LoginModal = () => {
 
     const handleInputChange = (event) => { 
         setState({
-            fields: handleChange(event, state.fields), 
+            fields: handleChange(event, state.fields),
             rq_feedback: Object.assign(state.rq_feedback, {[event.target.name]:{class:"", msg:""}}),
             ...state
         })
@@ -69,7 +75,21 @@ export const LoginModal = () => {
             return;
         };
         actions.hideLogin();
-    }
+    };
+
+    const show_password = () => {
+        setState({
+            controls: Object.assign(state.controls, {passwordShown: true}),
+            ...state
+        });
+    };
+
+    const hide_password = () => {
+        setState({
+            controls: Object.assign(state.controls, {passwordShown: false}),
+            ...state
+        });
+    };
 
     return (
         <div id="login-modal" className={store.display_login ? "show" : "hide"}>
@@ -98,7 +118,7 @@ export const LoginModal = () => {
                         <span className={`invalid-tooltip ${state.rq_feedback[rq_names.password].class}`}>{state.rq_feedback[rq_names.password].msg}</span>
                         <input 
                             className={state.rq_feedback[rq_names.password].class}
-                            type={state.pw_field_type} //cambia para mostrar/esconder contraseña ingresada.
+                            type={state.controls.passwordShown ? "text" : "password"} //cambia para mostrar/esconder contraseña ingresada.
                             placeholder="Ingresa tu contraseña" 
                             name={rq_names.password}
                             value={state.fields[rq_names.password] || ""}
@@ -106,14 +126,20 @@ export const LoginModal = () => {
                             onChange={handleInputChange}
                             onBlur={check_field}
                             disabled={store.loading_API}
-                            autoComplete="off"
                             required
                         />
+                        <span 
+                            className="show-password"
+                            onMouseEnter={show_password}
+                            onMouseLeave={hide_password}
+                            >
+                                <ShowPW />
+                        </span>
                     </div>
                     {/* submit button */}
                     <button 
-                        className="btn" 
-                        type="submit" 
+                        className="btn"
+                        type="submit"
                         disabled={store.loading_API}>
                             {store.loading_API ? <span>Cargando...</span> : "Aceptar"}
                     </button>

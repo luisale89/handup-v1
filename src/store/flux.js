@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 id: 0,
                 fname:"Luis",
                 lname:"Lucena"
-            },
+            }
 		},
 		actions: {
 			loadSomeData: () => {
@@ -24,7 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             hideLogin: () => {
                 setStore({display_login: false});
-            },
+            }
             // set_role: (role) => { // establece el rol global de la app para las configuraciones.
             //     const store = getStore();
             //     role = typeof(role) !== 'undefined' ? role : store.user.roles[0].role;
