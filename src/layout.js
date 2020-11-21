@@ -6,7 +6,6 @@ import { Context } from './store/appContext';
 //! Views
 import { Dashboard } from './views/dashboard';
 import { Home } from './views/home';
-import { NotFound } from './views/notFound';
 
 // ? components
 import { Sidebar } from "./component/sidebar";
@@ -50,7 +49,7 @@ export const Layout = () => {
                             {/* <Route path="/conocenos" component={About} />
                             <Route path="/beneficios" component={Benefits} />
                             <Route path="/contacto" component={Contact} /> */}
-                            <Route render={() => <NotFound />} />
+                            <Route render={() => <Redirect to="/" />} />
                         </Switch>
                     </div>
                 </ScrollToTop>
