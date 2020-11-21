@@ -20,6 +20,10 @@ export const Sidebar = () => {
         state.side_bar ? setState({side_bar:false}) : setState({side_bar:true})
     }
 
+    const close_menu = () => {
+        setState({side_bar:false})
+    }
+
     const app_links = [ //en esta variable se definen todas las rutas de la app. role va a mostrar las correspondientes.
         //app links
         {id:"1", name: "Información", to: '/dashboard', icon: <Home />},
@@ -29,7 +33,7 @@ export const Sidebar = () => {
     ]
 
     return (
-        <nav id="sidebar-container" className={state.side_bar ? "full":"small"}>
+        <nav id="sidebar-container">
             <div className="sidebar-header">
                 <NavLink to='/dashboard' className="app-logo">
                     <img src={logo} alt="app-logo" style={{width:"200px", height:"auto"}}/>
@@ -48,7 +52,7 @@ export const Sidebar = () => {
                                 key={item.id} 
                                 className="nav-link"
                                 to={item.to} 
-                                onClick={() => toggle_menu()}
+                                onClick={() => close_menu()}
                                 activeClassName="active" 
                                 exact
                                 >
@@ -58,7 +62,7 @@ export const Sidebar = () => {
                         )
                     })}
                 </div>
-                <div className="close-session" onClick={() => toggle_menu()}>
+                <div className="close-session" onClick={() => close_menu()}>
                     <Close />
                     <span>Cerrar sesión</span>
                 </div>

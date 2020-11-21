@@ -1,11 +1,7 @@
 #sidebar-container {
     width: 100%;
     position: fixed;
-    height: auto;
     box-shadow: 5px 10px 8px darken($color: $color-bg, $amount: 10%);
-    &.full {
-        height: 100%;
-    }
     @include flex-container($direction:column);
     /*header of the sidebar*/
     .sidebar-header {
@@ -23,15 +19,14 @@
     /*body of the sidebar*/
     .sidebar-body {
         background-color: $color-secondary;
-        width: 0;
-        height: 0;
-        overflow-x: hidden;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.8s ease-in-out;
         @include flex-item($grow:1);
         @include flex-container($direction:column, $justify: space-between);
-        transition: width 0.5s;
         &.show {
-            width: 80%;
-            height: calc(100% - $nav-height);
+            max-height: 400px;
         }
         .sidebar-nav {
             padding-top: 20px;
@@ -90,9 +85,14 @@
                 display: none;
             }
         }
-        .sidebar-body {
+        .sidebar-body{
             background-color: $color-secondary;
-            width: 100% !important;
+            &.show{
+                max-height: 100%;
+            }
+            &.hide{
+                max-height: 100%;
+            }
         }
     }
 }
