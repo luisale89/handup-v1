@@ -39,7 +39,7 @@
                 @include flex-container($items: center);
                 height: 50px;
                 text-decoration: none;
-                font-size: 1.15em;
+                font-size: 1.1em;
                 font-weight: 500;
                 color: $color-text-secondary;
                 &.active {
@@ -49,21 +49,21 @@
                     color: $color-text-primary;
                 }
                 svg {
-                    height: 25px;
+                    height: 1.1em;
                     width: auto;
                     margin: 0px 10px;
                 }
             }
         }
         .close-session {
-            @include flex-container($items: center, $justify: center);
+            @include flex-container($items: center, $justify: flex-start);
             height: 50px;
             margin: 10px;
             border-top: 1px solid #F8F8F8;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-            font-size: 1.25em;
+            font-size: 1.1em;
             font-weight: 500;
             cursor: pointer;
             color: $color-text-secondary;
@@ -72,7 +72,7 @@
                 color: $color-text-primary;
             }
             svg {
-                height: 25px;
+                height: 1.1em;
                 width: auto;
                 margin: 0px 10px;
             }

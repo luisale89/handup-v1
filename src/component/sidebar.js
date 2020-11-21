@@ -52,14 +52,14 @@ export const Sidebar = () => {
                                 activeClassName="active" 
                                 exact
                                 >
-                                    <span>{item.icon}</span>
+                                    {item.icon}
                                     <span>{item.name}</span>
                             </NavLink>
                         )
                     })}
                 </div>
                 <div className="close-session" onClick={() => toggle_menu()}>
-                    <span><Close /></span>
+                    <Close />
                     <span>Cerrar sesión</span>
                 </div>
             </div>
