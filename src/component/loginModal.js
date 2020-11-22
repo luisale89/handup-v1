@@ -72,7 +72,7 @@ export const LoginModal = () => {
     const handleClick = (event) => {
         const node = document.getElementById("login-form");
         if (node.contains(event.target) || store.loading_API) {
-            return;
+            return undefined;
         };
         actions.hideLogin();
     };

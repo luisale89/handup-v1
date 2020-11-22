@@ -30,8 +30,5 @@ html, body {
 }
   
 #landing {
-    margin-top: 150px;
-    @media only screen and (min-width: $desktop-bp) {
-      margin-top: $nav-height;
-    }
+    margin-top: 20px;
 }
