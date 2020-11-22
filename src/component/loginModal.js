@@ -41,7 +41,7 @@ export const LoginModal = () => {
         });
 
         if (valid) { // si todos los campos requeridos fueron validados
-            const result = actions.loadSomeData(); // envío de formulario a API - Recibe mensajes desde backend y muestra feedback en formulario en caso de algún error.
+            const result = actions.login_user(); // envío de formulario a API - Recibe mensajes desde backend y muestra feedback en formulario en caso de algún error.
             console.log(result);
         } else {
             console.log("no cumple");

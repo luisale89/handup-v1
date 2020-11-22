@@ -24,6 +24,12 @@ export const Sidebar = () => {
         setState({side_bar:false})
     }
 
+    const logout = () => {
+        close_menu();
+        const result = actions.logout_user();
+        console.log(result);
+    }
+
     const app_links = [ //en esta variable se definen todas las rutas de la app. role va a mostrar las correspondientes.
         //app links
         {id:"1", name: "Información", to: '/dashboard', icon: <Home />},
@@ -62,7 +68,7 @@ export const Sidebar = () => {
                         )
                     })}
                 </div>
-                <div className="close-session" onClick={() => close_menu()}>
+                <div className="close-session" onClick={() => logout()}>
                     <Close />
                     <span>Cerrar sesión</span>
                 </div>

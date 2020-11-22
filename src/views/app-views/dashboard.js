@@ -4,7 +4,19 @@ export const Dashboard = () => {
 
     return (
         <div id="dashboard">
-            <h1>Dashboard Page</h1>
+            <h1>holi</h1>
+            <h1>holi</h1>
+            <h1>holi</h1>
+            <h1>holi</h1>
+            <h1>holi</h1>
+            <h1>holi</h1>
+            <h1>holi</h1>
+            <h1>holi</h1>
+            <h1>holi</h1>
+            <h1>holi</h1>
+            <h1>holi</h1>
+            <h1>holi</h1>
+            <h1>holi</h1>
         </div>
     ); 
 }

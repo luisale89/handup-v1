@@ -12,18 +12,31 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
 		},
 		actions: {
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-                */
-                setStore({user_logged: true});
-                return "user logged-in";
-            },
             showLogin: () => {
                 setStore({display_login: true});
             },
             hideLogin: () => {
                 setStore({display_login: false});
+            },
+            login_user: () => {
+				/*
+					login_function to complete with API
+                */
+               setStore({user_logged: true});
+               return "user logged-in";
+            },
+            logout_user: () => {
+				/*
+					logout_function to complete with API
+                */
+                setStore({user_logged: false});
+                return "user logged-out";
+            },
+            loadSomeData: () => {
+				/**
+					fetch().then().then(data => setStore({ "foo": data.bar }))
+                */
+               setStore({loading_API: true})
             }
             // set_role: (role) => { // establece el rol global de la app para las configuraciones.
             //     const store = getStore();
