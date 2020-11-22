@@ -1,5 +1,8 @@
 #navbar {
-    position: relative;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    box-shadow: 0px 5px 10px -1px $color-bg;
     @include flex-container($direction:column);
     .navbar-header {
         height: $nav-height;
@@ -28,6 +31,7 @@
         }
     }
     .navbar-nav {
+        background-color: #FFF;
         overflow: hidden;
         -webkit-transition: max-height 0.8s;
         -moz-transition: max-height 0.8s;
@@ -45,7 +49,7 @@
             height: 50px;
             color: $color-text;
             padding: 15px 0px;
-            margin: 0 20px;
+            margin: 0px 20px 10px 20px;
             font-size: 1.05em;
             &.active {
                 border-bottom: 1px solid $color-text-primary;
@@ -73,6 +77,7 @@
         }
         .navbar-nav {
             @include flex-item($order: 2);
+            background-color: $color-primary;
             padding: 0;
             margin: 0;
             margin-left: auto;

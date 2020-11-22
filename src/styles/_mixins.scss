@@ -43,6 +43,7 @@
     color: $text-color;
     background-color: $bg-color;
     width: 100%;
+    font-weight: 600;
     // box-shadow: 0px 5px 10px -2px lighten($color: $shadow-color, $amount: 10%);
     &:focus {
         outline: none;
@@ -51,6 +52,7 @@
     }
     &::placeholder {
         color: lighten($color: $color-text, $amount: 10%);
+        font-weight: 400;
     }
     &.invalid {
         border: 1px solid $color-danger;
@@ -88,4 +90,37 @@
     &.invalid {
         display: inline-block;
     }
+}
+
+@mixin btn-filled($main-color) {
+    background-color: $main-color;
+    color: #fff;
+    border: none;
+    &:hover {
+        background-color: darken($color: $main-color, $amount: 15%);
+        color: #fff;
+    };
+    &:focus {
+        outline: none;
+        background-color: darken($color: $main-color, $amount: 10%);
+        box-shadow: 0px 0px 6px $main-color;
+    };
+    &:disabled {
+        background-color: lighten($color: $main-color, $amount: 10%);
+        cursor: default;
+    }
+}
+
+@mixin btn-outline($main-color) {
+    border: 1px solid $main-color;
+    background-color: rgba($color: $main-color, $alpha: 0);
+    color: $main-color;
+    &:hover {
+        background-color: rgba($color: $main-color, $alpha: 1.0);
+        color: #fff;
+    };
+    &:focus {
+        outline: none;
+        box-shadow: 0px 0px 6px $main-color;
+    };
 }

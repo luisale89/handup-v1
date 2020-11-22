@@ -9,42 +9,8 @@
     box-sizing: border-box;
 }
 
-#root {
-  height: 100%;
-}
-
-#main-app {
-  height: 100%;
-  @include flex-container($direction:column);
-  #app-content {
-    margin-top: $nav-height;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    @include flex-item($grow:1) //validar
-  }
-  @media only screen and (min-width: $mobile-bp) {
-    flex-direction: row;
-    #app-content {
-      margin: 0;
-      padding: 20px;
-    }
-  }
-}
-
-html, body {
-  margin: 0;
-  font-family: $main-font-stack;
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 100%;
-  }
-  
-code {
-    font-family: $code-font-stack;
-  }
-
-  @import "/partials/sidebar";
-  @import "/partials/navbar";
-  @import "/partials/dashboard";
-  @import "/partials/loginModal";
+@import "/partials/layout";
+@import "/partials/sidebar";
+@import "/partials/navbar";
+@import "/partials/dashboard";
+@import "/partials/loginModal";

@@ -6,6 +6,7 @@ import { Context } from './store/appContext';
 //! Views
 import { Dashboard } from './views/app-views/dashboard';
 import { Home } from './views/landing-views/home';
+import { About } from './views/landing-views/about';
 
 // ? components
 import { Sidebar } from "./component/sidebar";
@@ -28,30 +29,32 @@ export const Layout = () => {
             <BrowserRouter>
                 <div id="main-app">
                     <Sidebar />
-                    <section id="app-content">
-                        <Switch>
-                            <Route path="/dashboard" component={Dashboard} />
-                            {/* redirect when not found*/}
-                            <Route render={() => <Redirect to="/dashboard" />} />
-                        </Switch>
-                    </section>
+                    <ScrollToTop >
+                        <section id="app-content">
+                            <Switch>
+                                <Route path="/dashboard" component={Dashboard} />
+                                {/* redirect when not found*/}
+                                <Route render={() => <Redirect to="/dashboard" />} />
+                            </Switch>
+                        </section>
+                    </ScrollToTop>
                 </div>
             </BrowserRouter>
         );
     } else {
         return ( //Public Views
             <BrowserRouter>
+                <Navbar />
                 <ScrollToTop>
-                    <div id="landing">
-                        <Navbar />
+                    <section id="landing">
                         <Switch>
                             <Route exact path="/" component ={Home} />
-                            {/* <Route path="/conocenos" component={About} />
-                            <Route path="/beneficios" component={Benefits} />
+                            <Route path="/nosotros" component={About} />
+                            {/* <Route path="/beneficios" component={Benefits} />
                             <Route path="/contacto" component={Contact} /> */}
                             <Route render={() => <Redirect to="/" />} />
                         </Switch>
-                    </div>
+                    </section>
                 </ScrollToTop>
             </BrowserRouter>
         )
