@@ -46,7 +46,7 @@ export const Layout = () => {
             <BrowserRouter>
                 <Navbar />
                 <ScrollToTop>
-                    <section id="landing">
+                    <div id="landing">
                         <Switch>
                             <Route exact path="/" component ={Home} />
                             <Route path="/nosotros" component={About} />
@@ -54,7 +54,7 @@ export const Layout = () => {
                             <Route path="/contacto" component={Contact} /> */}
                             <Route render={() => <Redirect to="/" />} />
                         </Switch>
-                    </section>
+                    </div>
                 </ScrollToTop>
             </BrowserRouter>
         )

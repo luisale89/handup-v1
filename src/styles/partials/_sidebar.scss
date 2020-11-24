@@ -75,10 +75,10 @@
     }
 }
 
-@media only screen and (min-width: $mobile-bp) {
+@media only screen and (min-width: $desktop-bp) {
     #sidebar-container {
         height: 100%;
-        width: 250px;
+        max-width: 250px;
         position: static;
         .sidebar-header {
             #toggle-sidebar {

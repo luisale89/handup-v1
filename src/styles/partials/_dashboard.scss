@@ -1,3 +1,10 @@
 #dashboard {
-    background-color: $color-contrast;
+    height: 100%;
+    @include flex-container($direction:row, $wrap: wrap, $justify: space-around);
+    .information {
+        width: 100%;
+    }
+    .stats {
+        min-width: 200px;
+    }
 }

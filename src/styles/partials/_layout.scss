@@ -16,11 +16,13 @@ html, body {
     @include flex-container($direction:column);
     #app-content {
       margin-top: $nav-height;
-      overflow-y: scroll;
+      overflow-y: auto;
       overflow-x: hidden;
-      @include flex-item($grow:1) //validar
+      padding: 10px;
+      height: 100%;
+      width: 100%;
     }
-    @media only screen and (min-width: $mobile-bp) {
+    @media only screen and (min-width: $desktop-bp) {
       flex-direction: row;
       #app-content {
         margin: 0;
