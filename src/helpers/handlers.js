@@ -17,4 +17,8 @@ export const handleChange = (event, fields) => { // como inputs tiene el evento 
                 [name]: value
             });
         }
-}
+};
+
+export const setLocalState = (prevState, updateState) => {
+    return Object.assign(prevState, updateState)
+};

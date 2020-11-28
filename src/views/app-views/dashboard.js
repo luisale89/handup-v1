@@ -1,119 +1,206 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Context } from '../../store/appContext';
-import { handleChange } from '../../helpers/handlers';
+import { setLocalState } from '../../helpers/handlers';
 import { noSpace } from '../../helpers/validations'
+import { Regiones } from '../../helpers/regiones'; //Regiones[15] es la región Metropolitana.
+import { node } from 'prop-types';
 
 export const Dashboard = () => {
     //eslint-disable-next-line
     const restaurant = {
-        name: "rest_name",
-        address: "rest_addr",
-        phone: "rest_phon",
-        hours: "rest_hour",
-        open: "rest_open",
-        close: "rest_close",
-        logo: "rest_logo"
+        name: "name",
+        street: "street",
+        comuna: "comuna",
+        phone: "phone",
+        hours: "hours",
+        open: "open",
+        close: "close",
+        logo: "logo",
+        address: "address"
     };
-
+    //eslint-disable-next-line
     const {store, actions} = useContext(Context); //global State
 
     const [form, setForm] = useState({ //local State
-        rest_fields: {}
+        fields: {} // fields: {name:{value:"", hover:false, editable:false}}
     });
 
     const [controls, setControls] = useState({
-        rest_name: {hover:false, editable: false},
-        rest_addr: {hover:false, editable: false},
-        rest_phon: {hover:false, editable: false},
-        rest_hour: {hover:false, editable: false}
+        address:{hover:false, editable:false},
+        hours: {hover:false, aditable:false},
+        submit: {show:false}
     });
 
-    const handleInputChange = (event) => { 
+    const handleInputChange = (e) => { 
         setForm({
-            rest_fields: handleChange(event, form.rest_fields),
+            fields: setLocalState(form.fields, Object.assign(
+                form.fields[e.target.name], {value: e.target.value})
+            ),
             ...form
         });
     };
 
     const handleHoverIn = (e) => {
-        setControls({
-            [e.currentTarget.htmlFor]: Object.assign(controls[e.currentTarget.htmlFor], {hover:true}),
-            ...controls
-        });
+        if (e.currentTarget.dataset["control"] === "address") {
+            setControls({
+                address:Object.assign(controls.address, {hover:true}),
+                ...controls
+            })
+        } else {
+            setForm({
+                fields: setLocalState(form.fields, Object.assign(
+                    form.fields[e.currentTarget.dataset["control"]], {hover:true})
+                ),
+                ...form
+            })
+        }
     };
 
     const handleHoverOut = (e) => {
-        setControls({
-            [e.currentTarget.htmlFor]: Object.assign(controls[e.currentTarget.htmlFor], {hover:false}),
-            ...controls
-        })
+        if (e.currentTarget.dataset["control"] === "address") {
+            setControls({
+                address: setLocalState(controls.address, {hover:false}),
+                ...controls
+            });
+        } else {
+            setForm({
+                fields: setLocalState(form.fields, Object.assign(
+                    form.fields[e.currentTarget.dataset["control"]], {hover:false})
+                ),
+                ...form
+            })
+        }
     }
 
     const handleEditClick = (e) => {
-        setControls({
-            [e]: Object.assign(controls[e], {editable:true}),
-            ...controls
-        })
+        if (e === "address") {
+            setControls({
+                address: setLocalState(controls.address, {editable:true}),
+                submit: setLocalState(controls.submit, {show:true}),
+                ...controls
+            })
+        } else {
+            setForm({
+                fields: setLocalState(form.fields, Object.assign(
+                    form.fields[e], {editable:true})
+                ),
+                ...form
+            })
+            setControls({
+                submit: setLocalState(controls.submit, {show:true}),
+                ...controls
+            });
+        };
     }
 
     useEffect(() => {
-        // * se debe hacer llamada a API en esta sección, para actualizar el store al montar el comp.
-        // * función para llamada a API se encontrará en actions..
-        setForm({ // *setForm se hará con el return de la llamada a la API, al ser un fetch
-            rest_fields: Object.assign(form.rest_fields, store.dashboard_data.rest_info),
+        // * se debe hacer llamada a API en esta función actions.loadAPI()
+        let stt = {}
+        for (let x in store.dashboard.restaurant) { // recorre todo el objeto que contiene la información del restaurant.
+            Object.assign(stt, {[x]:{value: store.dashboard.restaurant[x], hover:false, editable:false}})
+        };
+        setForm({ // setForm se hará con el return de la llamada a la API, al ser un fetch
+            fields: Object.assign(form.fields, stt),
             ...form
         });
+        console.log(stt);
         //eslint-disable-next-line
     }, []);
 
     return (
         <div id="dashboard">
-            <div className="information">
-                <form id="rest-info">
+            
+            <div className="main-info">
+                {/*restaurant name forms*/}
+                <form id="rest-form">
+                {form.fields[restaurant.name] && form.fields[restaurant.name].editable ?
                     <div className="form-group">
-                        <span>Nombre:</span>
-                        {!controls[restaurant.name].editable && 
-                        <label 
-                            htmlFor={restaurant.name}
-                            onMouseEnter={(e) => handleHoverIn(e)}
-                            onMouseLeave={(e) => handleHoverOut(e)}
-                            >
-                            {store.dashboard_data.rest_info[restaurant.name] || ""}
-                            {controls[restaurant.name].hover && 
-                            <span onClick={() => handleEditClick(restaurant.name)}>edit_field</span>}
-                        </label>}
-                        {controls[restaurant.name].editable && 
+                        <label className="form-label" htmlFor={restaurant.name}>Nombre: </label>
+                        <span className="invalid-tooltip"></span>
                         <input
                             className=""
                             type="text"
                             placeholder="Nombre del restaurante" 
                             name={restaurant.name}
-                            value= {form.rest_fields[restaurant.name] || ""}
+                            value= {form.fields[restaurant.name].value || ""}
                             onChange={handleInputChange}
                             required
-                            autoComplete="off" //! 2 validate
-                        />}
-                        {controls[restaurant.name].editable && 
-                        <div style={{display:"inline-block"}}>
-                            <span>Guardar </span> {/*onClick will call the API to save changes*/}
-                            <span>Cancelar </span>
-                        </div>
-                        }
+                            autoComplete="off"
+                        />
+                    </div> 
+                    : 
+                    <div 
+                        className="info-content"
+                        data-control = {restaurant.name}
+                        onMouseEnter={(e) => {handleHoverIn(e)}}
+                        onMouseLeave={(e) => {handleHoverOut(e)}}
+                        >
+                        <span>Nombre: {store.dashboard.restaurant.name || ""}</span>
+                        {form.fields[restaurant.name] ? form.fields[restaurant.name].hover && 
+                        <span onClick={() => handleEditClick(restaurant.name)}>*edit_field*</span> : <div className={{display:"none"}}></div>}
                     </div>
+                    }
+                    {/* Address Forms */}
+                    {controls.address.editable ? 
+                        <div className="form-group">
+                            <label className="form-label" htmlFor={restaurant.street}>Calle: </label>
+                            <span className="invalid-tooltip"></span>
+                            <input
+                                className=""
+                                type="text"
+                                placeholder="Calle / Av." 
+                                name={restaurant.street}
+                                value= {form.fields[restaurant.street].value || ""}
+                                onChange={handleInputChange}
+                                required
+                                autoComplete="off"
+                            />
+                            <label className="form-label" htmlFor={restaurant.comuna}>Comuna: </label>
+                            <span className="invalid-tooltip"></span>
+                            <select 
+                                name={restaurant.comuna} 
+                                value={form.fields[restaurant.comuna].value || ""}
+                                onChange={handleInputChange}
+                                required
+                            >
+                                <option value="">Selecciona...</option>
+                                {Regiones[15].comunas.sort().map((item, index) => {
+                                    return <option key={index} value={item}>{item}</option>
+                                })}
+                            </select>
+                        </div> 
+                    : 
+                    <div 
+                        className="info-content"
+                        data-control={restaurant.address}
+                        onMouseEnter={(e) => {handleHoverIn(e)}}
+                        onMouseLeave={(e) => {handleHoverOut(e)}}
+                        >
+                        <span>Dirección: {`${store.dashboard.restaurant.street || ""}, ${store.dashboard.restaurant.comuna || ""}`}</span>
+                        {controls.address.hover && 
+                        <span onClick={() => handleEditClick(restaurant.address)}>*edit_field*</span>}
+                    </div>
+                    }
+                    {controls.submit.show && 
+                    <div className="submit-area">
+                        <span>Guardar</span>
+                        <span>Cancelar</span>
+                    </div>}
                 </form>
+                
                 <div id="rest-logo">
                     <span>Logo:</span>
                     <img />
                 </div>
             </div>
-            {store.dashboard_data.app_stats ? store.dashboard_data.app_stats.map((item, index) => {
+            {store.dashboard.stats.map((item, index) => {
                 return (
                     <div className="stats" key={index}>
                         <p>{item.qty}</p>
                         <p>{item.title}</p>
                     </div>
                 );
-            }) : <div></div>}
+            })}
         </div>
     ); 
 }

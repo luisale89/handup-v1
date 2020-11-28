@@ -10,19 +10,20 @@ const getState = ({ getStore, getActions, setStore }) => {
                 fname:"Luis",
                 lname:"Lucena"
             },
-            dashboard_data: { // *datos obtenidos de API, cambiar por fetch en actions.
-                app_stats: [
+            dashboard: { // *datos obtenidos de API, (cambiar por fetch en actions).
+                stats: [
                     {title: "Mesas Ocupadas", qty: 10},
                     {title: "Garzones Conectados", qty: 4},
                     {title: "Ordenes Recibidas", qty: 7}
                 ],
-                rest_info: {
-                    rest_name: "Nombre del restaurante",
-                    rest_addr: {str: "calle", num: "1234", comuna: "las condes"},
-                    rest_phon: "+2221821293",
-                    rest_open: {h: 12, m: 0},
-                    rest_close: {h: 23, m: 30},
-                    rest_logo: "https://logo"
+                restaurant: {
+                    name: "Nombre del restaurante",
+                    street: "Av. Andrés Bello 1234",
+                    comuna: "Las Condes",
+                    phone: "+2221821293",
+                    open: "12:00",
+                    close: "18:30",
+                    logo: "https://logo"
                 }
             }
 		},
