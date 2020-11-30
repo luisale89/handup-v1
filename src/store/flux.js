@@ -18,11 +18,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                 ],
                 restaurant: {
                     name: "Nombre del restaurante",
-                    street: "Av. Andrés Bello 1234",
-                    comuna: "Las Condes",
+                    address: "Av. Andrés Bello 1234, Las Condes",
                     phone: "+2221821293",
-                    open: "12:00",
-                    close: "18:30",
+                    open_time: "12:00",
+                    close_time: "18:30",
                     logo: "https://logo"
                 }
             }
