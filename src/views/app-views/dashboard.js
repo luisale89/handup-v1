@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Context } from '../../store/appContext';
 import { setLocalState } from '../../helpers/handlers';
+import defaultImage from '../../img/defaultImg.png';
 // import { noSpace } from '../../helpers/validations'
 // import { Regiones } from '../../helpers/regiones'; //Regiones[15] es la región Metropolitana.
 // import { node } from 'prop-types';
@@ -16,7 +17,7 @@ export const Dashboard = () => {
             phone: {value:"", hover:false, editable:false},
             open_time: {value:"", hover:false, editable:false},
             close_time: {value:"", hover:false, editable:false},
-            logo: {value:"", hover:false, editable:false}
+            logo: {value: "", hover:false, editable:false}
         }
     });
 
@@ -29,29 +30,27 @@ export const Dashboard = () => {
     ];  
 
     const handleInputChange = (e) => { 
+        const {name, value} = e.target
         setForm({
             fields: setLocalState(form.fields, Object.assign(
-                form.fields[e.target.name], {value: e.target.value})
+                form.fields[name], {value: value})
             ),
             ...form
         });
     };
 
-    const handleHoverIn = (e) => {
+    const handleHoverIn = (event) => {
+        const e = event.currentTarget.dataset["control"];
         setForm({
-            fields: setLocalState(form.fields, Object.assign(
-                form.fields[e.currentTarget.dataset["control"]], {hover:true}
-            )),
+            fields: setLocalState(form.fields, {[e]:{...form.fields[e], hover:true}}),
             ...form
         });
-        console.log(form);
     };
 
-    const handleHoverOut = (e) => {
+    const handleHoverOut = (event) => {
+        const e = event.currentTarget.dataset["control"];
         setForm({
-            fields: setLocalState(form.fields, Object.assign(
-                form.fields[e.currentTarget.dataset["control"]], {hover:false}
-            )),
+            fields: setLocalState(form.fields, {[e]:{...form.fields[e], hover:false}}),
             ...form
         })
     };
@@ -68,11 +67,9 @@ export const Dashboard = () => {
             })
         } else {
             setForm({
-                fields: setLocalState(form.fields, Object.assign(
-                    form.fields[e], {editable:true})
-                ),
+                fields: setLocalState(form.fields, {[e]:{...form.fields[e], editable:true}}),
                 ...form
-            });
+            })
         }
     };
 
@@ -90,6 +87,7 @@ export const Dashboard = () => {
             fields: setLocalState(form.fields, stt),
             ...form
         });
+        console.log(store.dashboard.restaurant);
         //eslint-disable-next-line
     }, []);
 
@@ -135,7 +133,7 @@ export const Dashboard = () => {
                     <button>Cancelar</button>
                 </form>
                 <div className="rest-logo">
-                    <img alt="restaurant-logo"/>
+                    <img src={form.fields.logo.value === "default" ? defaultImage : form.fields.logo.value} alt="restaurant-logo"/>
                 </div>
             </div>
             {store.dashboard.stats.map((item, index) => {

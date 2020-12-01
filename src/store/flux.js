@@ -22,7 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     phone: "+2221821293",
                     open_time: "12:00",
                     close_time: "18:30",
-                    logo: "https://logo"
+                    logo: "default"
                 }
             }
 		},
