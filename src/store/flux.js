@@ -24,7 +24,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                     close_time: "18:30",
                     logo: "default"
                 }
-            }
+            },
+            tables: [
+                {name:"Mesa 1", qrcode: "https://google.com"},
+                {name:"Mesa 2", qrcode: "https://google.com"},
+            ]
 		},
 		actions: {
             showLogin: () => {

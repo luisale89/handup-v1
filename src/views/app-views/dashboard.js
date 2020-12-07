@@ -32,7 +32,7 @@ export const Dashboard = () => {
     const handleInputChange = (e) => { 
         const {name, value} = e.target
         setForm({
-            fields: setLocalState(form.fields, Object.assign(
+            fields: setLocalState(form.fields, Object.assign( // ! sustituir por ...form.fields
                 form.fields[name], {value: value})
             ),
             ...form

@@ -22,7 +22,7 @@
         width: 100%;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.8s ease-in-out;
+        transition: max-height 0.5s;
         @include flex-item($grow:1);
         @include flex-container($direction:column, $justify: space-between);
         &.show {

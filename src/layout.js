@@ -5,6 +5,7 @@ import { Context } from './store/appContext';
 
 //! Views
 import { Dashboard } from './views/app-views/dashboard';
+import { Tables } from './views/app-views/tables';
 import { Home } from './views/landing-views/home';
 import { About } from './views/landing-views/about';
 
@@ -32,7 +33,8 @@ export const Layout = () => {
                     <ScrollToTop >
                         <section id="app-content">
                             <Switch>
-                                <Route path="/dashboard" component={Dashboard} />
+                                <Route path="/dashboard" component={ Dashboard } />
+                                <Route path="/mesas" component={ Tables } />
                                 {/* redirect when not found*/}
                                 <Route render={() => <Redirect to="/dashboard" />} />
                             </Switch>
