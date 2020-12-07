@@ -67,8 +67,8 @@ export const Tables = () => {
                 id="edit-tables"
                 title="Agregar Mesas"
                 body={ModalBody()} 
-                submit={{name:"Agregar", callBack:hideModal}}
-                cancel={{name:"Cancelar", callBack:hideModal}}
+                submit={{name: "Agregar", callBack: hideModal}}
+                cancel={{name: "Cancelar", callBack: hideModal}}
             />}
         </div>
     );

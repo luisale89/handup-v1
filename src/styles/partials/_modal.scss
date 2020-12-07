@@ -1,6 +1,6 @@
 @keyframes animate_modal {
-    from {opacity:0}
-    to {opacity:1}
+    from {opacity:0; top:-100%}
+    to {opacity:1; top:30%}
 }
 
 @-webkit-keyframes animate_modal {
@@ -16,16 +16,19 @@
     background-color: fade-out($color: #000, $amount: 0.5);
     width: 100%;
     height: 100%;
-    overflow: auto;
     .modal-container {
         -webkit-animation-name: animate_modal;
         -webkit-animation-duration: 0.5s;
         animation-name: animate_modal;
         animation-duration: 0.5s;
+        position: fixed;
+        left: 50%;
+        top: 30%;
+        transform: translate(-50%, -30%);
         background-color: #fefefe;
-        margin: 15% auto; /* 15% from the top and centered */
         padding: 20px;
         width: 80%; /* Could be more or less, depending on screen size */
         max-width: 800px;
+        border-radius: 10px;
     }
 }
