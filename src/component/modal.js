@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Context } from '../store/appContext';
+import React from 'react';
 
 export const GeneralModal = (props) => {
     

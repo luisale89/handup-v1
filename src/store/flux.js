@@ -26,8 +26,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
             tables: [
-                {name:"1", qrcode: "https://google.com"},
-                {name:"2", qrcode: "https://google.com"},
+                {name:"mesa 1", qrcode: "https://google.com"},
+                {name:"mesa 2", qrcode: "https://google.com"},
             ]
 		},
 		actions: {

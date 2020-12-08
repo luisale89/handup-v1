@@ -3,6 +3,8 @@ import { Context } from '../../store/appContext';
 import { validate_all, validate_field, noSpace } from '../../helpers/validations';
 import { setLocalState, handleWindowClick } from '../../helpers/handlers';
 import { GeneralModal } from '../../component/modal';
+import { ReactComponent as Delete } from "../../img/delete.svg";
+import { ReactComponent as QRcode } from "../../img/qrcode.svg";
 
 
 export const Tables = () => {
@@ -15,7 +17,7 @@ export const Tables = () => {
     
     const ModalBody = () => {
         return (
-            <form id="tables-form" onSubmit={hideModal} noValidate>
+            <form id="tables-form" onSubmit={handleModalSubmit} noValidate>
                 <div className="form-group">
                     <label>
                     <input
@@ -23,7 +25,7 @@ export const Tables = () => {
                         type="radio" 
                         name="inputOption"
                         value="option1"
-                        checked={modalForm.inputOption === "option1"}
+                        checked={userInput.inputOption === "option1"}
                         onChange={(e) => handleInputChange(e)}
                     />
                     Agregar una
@@ -36,11 +38,11 @@ export const Tables = () => {
                             type="number" 
                             min="0"
                             name="tableNumber"
-                            value={modalForm.tableNumber || ""}
+                            value={userInput.tableNumber || ""}
                             onChange={handleInputChange}
                             onKeyPress={noSpace}
                             // onBlur={check_field}
-                            disabled={modalForm.inputOption === "option2"}
+                            disabled={userInput.inputOption === "option2"}
                             required
                         />
                 </div>
@@ -51,7 +53,7 @@ export const Tables = () => {
                             type="radio" 
                             name="inputOption"
                             value="option2"
-                            checked={modalForm.inputOption === "option2"}
+                            checked={userInput.inputOption === "option2"}
                             onChange={(e) => handleInputChange(e)}
                         />
                         Agregar varias
@@ -64,11 +66,11 @@ export const Tables = () => {
                         type="number" 
                         min="0"
                         name="fromNumber"
-                        value={modalForm.fromNumber || ""}
+                        value={userInput.fromNumber || ""}
                         onChange={handleInputChange}
                         onKeyPress={noSpace}
                         // onBlur={check_field}
-                        disabled={modalForm.inputOption === "option1"}
+                        disabled={userInput.inputOption === "option1"}
                         required
                     />
                 </div>               
@@ -79,14 +81,15 @@ export const Tables = () => {
                         type="number" 
                         min="0"
                         name="toNumber"
-                        value={modalForm.toNumber || ""}
+                        value={userInput.toNumber || ""}
                         onChange={handleInputChange}
                         onKeyPress={noSpace}
                         // onBlur={check_field}
-                        disabled={modalForm.inputOption === "option1"}
+                        disabled={userInput.inputOption === "option1"}
                         required
                     />
                 </div>
+                <input type="submit" style={{display:"none"}}></input>
             </form>
         );
     };
@@ -94,14 +97,14 @@ export const Tables = () => {
     const ModalFooter = () => {
         return (
             <div className="submit">
-                <button onClick={handleModalSubmit} className="btn btn-primary" autoFocus> Agregar</button>
+                <button onClick={handleModalSubmit} className="btn btn-primary"> Agregar</button>
                 <button onClick={hideModal} className="btn btn-danger"> Cancelar</button>
             </div>
         )
     };
 
     const handleInputChange = (e) => {
-        setModalForm(prevState => ({
+        setuserInput(prevState => ({
             ...prevState,
             [e.target.name]: e.target.value
         }));
@@ -109,16 +112,20 @@ export const Tables = () => {
 
     const handleModalSubmit = (e) => {
         e.preventDefault()
+        console.log(e);
     };
     
     const [tables, setTables] = useState([]);
     
     const [control, setControl] = useState({
-        showModal: false
+        addTableModal: false,
+        downloadList: false,
+
     });
 
-    const [modalForm, setModalForm] = useState({
+    const [userInput, setuserInput] = useState({
         inputOption: "option1",
+        downloadOption: "option1",
         tableNumber: "",
         fromNumber: "",
         toNumber: ""
@@ -126,24 +133,25 @@ export const Tables = () => {
 
     const {store, actions} = useContext(Context);
 
-    const toggleModal = () => {
+    const toggleComponent = (e) => {
+        const target = e.target.dataset["control"];
         setControl((prevControl) => ({
-            ...prevControl, 
-            showModal: !prevControl.showModal
-        }))
+            ...prevControl,
+            [target]: !prevControl[target]
+        }));
     };
 
     const hideModal = () => {
         setControl((prevControl) => ({
             ...prevControl, 
-            showModal: false
+            addTableModal: false
         }))
     };
 
     useEffect(() => {
         // * se debe hacer llamada a API en esta función actions.loadAPI()
         const tables_data = store.tables.map((item) => {
-            return {...item, hover: false}
+            return {...item, hover: false, checked: false}
         });
         setTables(tables_data);
 
@@ -158,22 +166,6 @@ export const Tables = () => {
         if (handleWindowClick(event, "modal-addTables", store.loading_API)) { //edit-tables is the id of the modal to hide-show
             hideModal();
         };
-    };
-
-    const deleteTable = (table_id) => {
-        const newTables = tables.filter((item) => {
-            if (item.name !== table_id) {
-                return item
-            }
-        });
-        const newStore = newTables.map((item) => {
-            delete item.hover;
-            return item
-        })
-        const result = actions.updateTables(newStore);
-        if (result) {
-            setTables(newTables);
-        }
     };
 
     const handleHoverIn = (table_id) => {
@@ -196,31 +188,111 @@ export const Tables = () => {
             }
         });
         setTables(newState);
+    };
+
+    const deleteTable = (table_id) => {
+        const newTables = tables.filter((item) => {
+            if (item.name !== table_id) {
+                return item
+            }
+        });
+        const newStore = newTables.map((item) => {
+            return {name: item.name, qrcode: item.qrcode} //extract only the requested by API
+        })
+        const result = actions.updateTables(newStore);
+        if (result) {
+            setTables(newTables);
+        }
+    };
+
+    const handleTableSelect = (table_id) => {
+        const newTables = tables.map((item) => {
+            if (item.name === table_id && !item.checked) {
+                return {...item, checked:true}
+            } else if (item.name === table_id) {
+                return {...item, checked:false}
+            } else {
+                return item
+            }
+        });
+        setTables(newTables);
     }
 
     return (
         <div id="tables">
             <div className="" data-control="table-control">
-                <h3 onClick={toggleModal} > + Agregar Mesas</h3>
-                {tables[0] ?  tables.map(item => {
-                    return(
-                        <p 
-                        key={item.name}
-                        onMouseEnter={() => handleHoverIn(item.name)}
-                        onMouseLeave={() => handleHoverOut(item.name)}
-                        >
-                            Mesa {item.name}
-                            {item.hover && <span 
-                            onClick={() => deleteTable(item.name)}
-                            > *delete*</span>}
-                        </p>)
-                    })
-                : <p>No hay mesas</p>}
+                <button data-control="addTableModal" onClick={(e) => toggleComponent(e)} className="btn-link title"> + Agregar Mesas</button>
+                <div className="table-list">
+                    {tables[0] ?  tables.map(item => {
+                        return(
+                            <p
+                            key={item.name}
+                            onMouseEnter={() => handleHoverIn(item.name)}
+                            onMouseLeave={() => handleHoverOut(item.name)}
+                            >
+                                {`Mesa ${item.name.slice("mesa ")}`}
+                                {item.hover && <span 
+                                onClick={() => deleteTable(item.name)}
+                                > <Delete/></span>}
+                            </p>
+                            )
+                        })
+                    : <p>No hay mesas</p>}
+                </div>
             </div>
             <div className="" data-control="qrcode-print">
-                <h1>Descargar Códigos QR</h1>
+                <h1> <QRcode /> Descargar Códigos QR</h1>
+                <div className="download-options">
+                    <label>
+                        <input
+                            className="radio-input"
+                            type="radio" 
+                            name="downloadOption"
+                            value="option1"
+                            checked={userInput.downloadOption === "option1"}
+                            onChange={(e) => handleInputChange(e)}
+                        />
+                        Descargar todos
+                    </label>
+                    <label>
+                        <input
+                            className="radio-input"
+                            type="radio" 
+                            name="downloadOption"
+                            value="option2"
+                            checked={userInput.downloadOption === "option2"}
+                            onChange={(e) => handleInputChange(e)}
+                        />
+                        Seleccionar mesas
+                    </label>
+                </div>
+                <div data-control="table-select">
+                    <button 
+                    className="btn btn-outline-primary"
+                    data-control = "downloadList"
+                    disabled={userInput.downloadOption === "option1"}
+                    >Seleccionar mesas <i className="arrow down"></i></button>
+                    {/* <h3 data-control = "downloadList" onClick ={(e) => toggleComponent(e)} >Seleccionar mesas -</h3> */}
+                    <ul className={`${control.downloadList ? "show" : "hide"} download-list`}>
+                        {tables.map(item => {
+                            return (
+                                <li>
+                                    {`Mesa ${item.name.slice("mesa ")}`}
+                                    <input
+                                    className="checkbox"
+                                    type="checkbox" 
+                                    checked={item.checked}
+                                    onChange={() => handleTableSelect(item.name)}
+                                    disabled={userInput.downloadOption === "option1"}
+                                />
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
+                <button className="btn btn-primary">Descargar</button>
             </div>
-            {control.showModal && <GeneralModal 
+            {control.addTableModal && <GeneralModal 
                 id="modal-addTables"
                 header={ModalHeader()}
                 body={ModalBody()} 
