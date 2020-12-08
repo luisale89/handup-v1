@@ -26,8 +26,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
             tables: [
-                {name:"Mesa 1", qrcode: "https://google.com"},
-                {name:"Mesa 2", qrcode: "https://google.com"},
+                {name:"1", qrcode: "https://google.com"},
+                {name:"2", qrcode: "https://google.com"},
             ]
 		},
 		actions: {
@@ -56,7 +56,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch().then().then(data => setStore({ "foo": data.bar }))
                 */
                setStore({loading_API: true})
-            }
+            },
+            updateTables: (newTables) => {
+                setStore({tables: newTables});
+                return true; //! simulando exito en fetch a API
+            },
             // set_role: (role) => { // establece el rol global de la app para las configuraciones.
             //     const store = getStore();
             //     role = typeof(role) !== 'undefined' ? role : store.user.roles[0].role;

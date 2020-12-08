@@ -22,3 +22,13 @@ export const handleChange = (event, fields) => { // como inputs tiene el evento 
 export const setLocalState = (prevState, updateState) => {
     return Object.assign(prevState, updateState)
 };
+
+export const handleWindowClick = (event, id, blocked=false) => {
+    const node = document.getElementById(id);
+    if (node === null) {
+        return false;
+    } else if (node.contains(event.target) || blocked) {
+        return false;
+    };
+    return true;
+};

@@ -4,7 +4,7 @@ import { validate_all, validate_field, noSpace } from '../helpers/validations';
 import { handleChange } from '../helpers/handlers';
 import { ReactComponent as ShowPW } from "../img/show_pw.svg";
 
-export const LoginModal = () => {
+export const LoginDropDown = () => {
 
     const {store, actions} = useContext(Context);
 
@@ -92,7 +92,7 @@ export const LoginModal = () => {
     };
 
     return (
-        <div id="login-modal" className={store.display_login ? "show" : "hide"}>
+        <div id="login-dropDown" className={store.display_login ? "show" : "hide"}>
             <div className="login-body">
                 <form id="login-form" onSubmit={handleSubmit} noValidate autoComplete="on">
                     {/* email field */}

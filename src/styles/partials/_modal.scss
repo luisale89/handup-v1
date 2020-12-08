@@ -13,7 +13,9 @@
     top: 0px;
     left: 0px;
     z-index: 1000;
-    background-color: fade-out($color: #000, $amount: 0.5);
+    background-color: fade-out($color: #000, $amount: 0.4);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     width: 100%;
     height: 100%;
     .modal-container {
@@ -29,6 +31,6 @@
         padding: 20px;
         width: 80%; /* Could be more or less, depending on screen size */
         max-width: 800px;
-        border-radius: 10px;
+        border-radius: 5px;
     }
 }

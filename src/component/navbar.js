@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Context } from '../store/appContext';
 import {NavLink} from 'react-router-dom';
 import logo from "../img/app-logo.png";
-import { LoginModal } from "./loginModal";
+import { LoginDropDown } from "./loginDropDown";
 
 export const Navbar = () => {
     // eslint-disable-next-line
@@ -67,7 +67,7 @@ export const Navbar = () => {
                     )
                 })}
             </div>
-            <LoginModal />
+            <LoginDropDown />
         </nav>
     );
 }
