@@ -109,6 +109,7 @@ export const Dashboard = () => {
                                     value={form.fields[item.name].value}
                                     onChange={(e) => handleInputChange(e)}
                                     required={item.required}
+                                    autoFocus
                                     />
                                 }
                                 <span className="invalid-tooltip" style={{display:"none"}}></span>
@@ -129,8 +130,8 @@ export const Dashboard = () => {
                             </div>
                         )
                     })}
-                    <button type="submit">Submit</button>
-                    <button>Cancelar</button>
+                    <button type="submit" className="btn btn-primary">Guardar</button>
+                    <button className="btn btn-danger">Cancelar</button>
                 </form>
             </div>
             <div className="rest-logo">

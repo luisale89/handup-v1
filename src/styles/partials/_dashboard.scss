@@ -3,18 +3,18 @@
         overflow-y: auto;
         border: 1px solid $color-bg;
         border-radius: 5px;
-        box-shadow: 0px 2px 5px 0px $color-bg;
         padding: 10px;
+        &:hover {
+            box-shadow: 0px 0px 5px 2px $color-bg;
+        }
     }
     .rest-info {
         grid-area: restInfo;
     }
     .rest-logo {
         grid-area: restLogo;
-        // background-color: $color-bg;
     }
     .stats {
-        // background-color: $color-bg;
         &.g-1 {
             grid-area: g1;
         }
