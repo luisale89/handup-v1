@@ -96,7 +96,7 @@ export const LoginDropDown = () => {
             <div className="login-body">
                 <form id="login-form" onSubmit={handleSubmit} noValidate autoComplete="on">
                     {/* email field */}
-                    <div className="form-group">
+                    <div className="form-group g-1">
                         <label htmlFor={rq_names.email}>Usuario</label>
                         <span className={`invalid-tooltip ${state.rq_feedback[rq_names.email].class}`}>{state.rq_feedback[rq_names.email].msg}</span>
                         <input
@@ -113,7 +113,7 @@ export const LoginDropDown = () => {
                         />
                     </div>
                     {/* pasword field */}
-                    <div className="form-group">
+                    <div className="form-group g-2">
                         <label htmlFor={rq_names.password}>Contraseña</label>
                         <span className={`invalid-tooltip ${state.rq_feedback[rq_names.password].class}`}>{state.rq_feedback[rq_names.password].msg}</span>
                         <input 
@@ -138,7 +138,7 @@ export const LoginDropDown = () => {
                     </div>
                     {/* submit button */}
                     <button 
-                        className="btn"
+                        className="btn g-3"
                         type="submit"
                         disabled={store.loading_API}>
                             {store.loading_API ? <span>Cargando...</span> : "Aceptar"}

@@ -51,7 +51,7 @@
         color: $color-primary;
     }
     &::placeholder {
-        color: lighten($color: $color-text, $amount: 10%);
+        color: lighten($color: $text-muted, $amount: 10%);
         font-weight: 400;
     }
     &.invalid {
@@ -149,4 +149,12 @@
         color: $color-bg;
         pointer-events: none;
     }
+}
+
+@mixin grid-container ($column, $row, $gap: 20px) {
+    padding: 20px;
+    display: grid;
+    grid-gap: $gap;
+    grid-template-columns: repeat($column, 1fr);
+    grid-template-rows: repeat($row, auto);
 }

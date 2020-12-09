@@ -22,12 +22,12 @@
         overflow: visible;
         @include flex-container($direction: row, $justify:space-around, $items: center);
         #toggle-menu {
-            @include burger-menu($color-text-primary)
+            @include burger-menu($text-primary)
         }
         .login {
             align-self: center;
             button {
-                @include btn-filled($color-contrast)
+                @include btn-filled($color-logo)
             }
         }
     }
@@ -48,17 +48,17 @@
             display: block;
             text-decoration: none;
             height: 50px;
-            color: $color-text;
+            color: $text-muted;
             padding: 15px 0px;
             margin: 0px 20px 10px 20px;
             font-size: 1.05em;
             &.active {
-                border-bottom: 1px solid $color-text-primary;
-                color: $color-text-primary;
+                border-bottom: 1px solid $text-primary;
+                color: $text-primary;
                 font-weight: 700;
             }
             &:hover {
-                border-bottom: 1px solid $color-text;
+                border-bottom: 1px solid $text-muted;
             }
         }
     }
@@ -91,17 +91,17 @@
             }
             @include flex-container($items: center, $justify: center);
             a.nav-link {
-                color: $color-text-secondary;
+                color: $text-white;
                 padding: 15px 0px;
                 margin: 0 20px;
                 text-decoration: none;
                 &.active {
-                    border-bottom: 1px solid $color-text-secondary;
-                    color: $color-text-secondary;
+                    border-bottom: 1px solid $text-white;
+                    color: $text-white;
                     font-weight: 700;
                 }
                 &:hover {
-                    border-bottom: 1px solid $color-text-secondary;
+                    border-bottom: 1px solid $text-white;
                 }
             }
         }
