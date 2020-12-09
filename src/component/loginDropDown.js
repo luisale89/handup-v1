@@ -137,12 +137,14 @@ export const LoginDropDown = () => {
                         </span>
                     </div>
                     {/* submit button */}
-                    <button 
-                        className="btn g-3"
-                        type="submit"
-                        disabled={store.loading_API}>
-                            {store.loading_API ? <span>Cargando...</span> : "Aceptar"}
-                    </button>
+                    <div className="submit-container g-3">
+                        <button 
+                            className="btn"
+                            type="submit"
+                            disabled={store.loading_API}>
+                                {store.loading_API ? <span>Cargando...</span> : "Aceptar"}
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

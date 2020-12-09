@@ -93,12 +93,12 @@ export const Dashboard = () => {
 
     return (
         <div id="dashboard">
-            <div className="main-info">
+            <div className="rest-info">
                 <form id="rest-profile" onSubmit={handleSubmit} noValidate autoComplete="off">
                     {formFields.map((item, index) => {
                         return (
                             form.fields[item.name].editable ? 
-                            <div key={index} className={`${item.addStyle} form-group`}>
+                            <div key={index} className={`${item.addStyle} form-inline-group`}>
                                 <label className="form-label" htmlFor={item.name}>{item.label}</label>
                                 {item.fieldType === "input" && 
                                     <input
@@ -114,8 +114,8 @@ export const Dashboard = () => {
                                 <span className="invalid-tooltip" style={{display:"none"}}></span>
                             </div>
                             :
-                            <div key={index} className={`${item.addStyle} form-legend`}>
-                                <span>{item.label}</span>
+                            <div key={index} className={`${item.addStyle} form-inline-group`}>
+                                <label className="form-label" htmlFor={item.name}>{item.label}</label>
                                 <span
                                 data-control={item.name}
                                 onClick={(e) => handleClickEdit(e)}
@@ -132,13 +132,13 @@ export const Dashboard = () => {
                     <button type="submit">Submit</button>
                     <button>Cancelar</button>
                 </form>
-                <div className="rest-logo">
-                    <img src={form.fields.logo.value === "default" ? defaultImage : form.fields.logo.value} alt="restaurant-logo"/>
-                </div>
+            </div>
+            <div className="rest-logo">
+                <img src={form.fields.logo.value === "default" ? defaultImage : form.fields.logo.value} alt="restaurant-logo"/>
             </div>
             {store.dashboard.stats.map((item, index) => {
                 return (
-                    <div className="stats" key={index}>
+                    <div className={`g-${index+1} stats`} key={index}>
                         <p>{item.qty}</p>
                         <p>{item.title}</p>
                     </div>

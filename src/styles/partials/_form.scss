@@ -1,5 +1,6 @@
 .form-group {
     position: relative;
+    margin-bottom: 10px;
     label {
         @include form-label($text-muted);
         font-size: 1em;
@@ -10,7 +11,7 @@
     .invalid-tooltip {
         @include tooltip($color-danger);
         right: 0px;
-        top: 15px;
+        top: 0px;
     }
     span.show-password {
         position: absolute;
@@ -23,5 +24,24 @@
             width: auto;
             color: $color-primary;
         }
+    }
+}
+
+.form-inline-group {
+    position: relative;
+    margin-bottom: 10px;
+    label {
+        @include form-label($text-muted);
+        font-size: 1em;
+        max-width: 50%;
+    }
+    input {
+        @include form-input(#FFF, $color-bg, $text-muted);
+        max-width: 50%;
+    }
+    .invalid-tooltip {
+        @include tooltip($color-danger);
+        right: 0px;
+        top: 15px;
     }
 }

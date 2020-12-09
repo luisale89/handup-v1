@@ -1,10 +1,48 @@
 #dashboard {
-    height: 100%;
-    @include flex-container($direction:row, $wrap: wrap, $justify: space-around);
-    .main-info {
-        width: 100%;
+    > div {
+        overflow-y: auto;
+        border: 1px solid $color-bg;
+        border-radius: 5px;
+        box-shadow: 0px 2px 5px 0px $color-bg;
+        padding: 10px;
+    }
+    .rest-info {
+        grid-area: restInfo;
+    }
+    .rest-logo {
+        grid-area: restLogo;
+        // background-color: $color-bg;
     }
     .stats {
-        min-width: 200px;
+        // background-color: $color-bg;
+        &.g-1 {
+            grid-area: g1;
+        }
+        &.g-2 {
+            grid-area: g2;
+        }
+        &.g-3 {
+            grid-area: g3;
+        }
+    }
+    @include grid-container(3, 5, 20px);
+    grid-template-areas: 
+        "restInfo restInfo restInfo" 
+        "restLogo restLogo restLogo" 
+        "g1 g1 g1"
+        "g2 g2 g2"
+        "g3 g3 g3";
+    @media only screen and (min-width: $desktop-bp) {
+        grid-template-areas: 
+        "restInfo restInfo restLogo" 
+        "restInfo restInfo restLogo" 
+        "restInfo restInfo restLogo" 
+        "g1 g2 g3"
+        "g1 g2 g3";
+        height: 100%;
+        padding: 20px;
+        > div {
+            min-height: auto;
+        }
     }
 }
